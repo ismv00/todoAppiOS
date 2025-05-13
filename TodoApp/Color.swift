@@ -20,3 +20,10 @@ extension Color {
         self.init(red: r, green: g, blue: b)
     }
 }
+
+import SwiftUI
+
+extension Color {
+    static let customAccentColor = Color("AccentColor")
+    static let customBackgroundColor = Color("BackgroundColor")
+}
