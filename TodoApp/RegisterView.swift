@@ -1,40 +1,44 @@
 //
-//  LoginView.swift
+//  RegisterView.swift
 //  TodoApp
 //
-//  Created by Igor S. Menezes on 05/05/25.
+//  Created by Igor S. Menezes on 17/05/25.
 //
 
 import SwiftUI
 
-struct LoginView: View {
-    
+struct RegisterView: View {
+    @State private var fullName = ""
     @State private var email = ""
     @State private var password = ""
+    @State private var confirmPassword = ""
     
     
     var body: some View {
-        
         NavigationStack {
+            
 
         VStack(spacing: 20) {
             Spacer()
             
-            
-            Text("Bem vindo de volta!")
+            Text("Seja bem-vindo!")
                 .font(.largeTitle).bold()
                 .foregroundStyle(.black)
+            
             Text("Vamos te ajudar a concluir suas tarefas")
                 .font(.subheadline)
                 .foregroundStyle(.black.opacity(0.7))
-                .multilineTextAlignment(.center)
-                .padding(.horizontal, 40)
             
             Image("login")
                 .resizable()
                 .scaledToFit()
                 .frame(height: 200)
-                .padding(.bottom, 20)
+            
+            TextField("Digite seu nome completo", text: $fullName)
+                .padding()
+                .background(Color.white)
+                .cornerRadius(10)
+                .padding(.horizontal)
             
             TextField("Digite seu e-mail", text: $email)
                 .padding()
@@ -48,17 +52,16 @@ struct LoginView: View {
                 .cornerRadius(10)
                 .padding(.horizontal)
             
+            SecureField("Confirme sua senha", text: $confirmPassword)
+                .padding()
+                .background(Color.white)
+                .cornerRadius(10)
+                .padding(.horizontal)
+            
             Button(action: {
-                           print("Esqueceu a senha")
-                       }) {
-                           Text("Esqueceu sua senha?")
-                               .foregroundColor(Color.customAccentColor)
-                               .padding(.bottom, 10)
-                       }
-            Button(action: {
-                print("Login")
+                print("Register")
             }) {
-                Text("Login")
+                Text("Registrar")
                     .frame(maxWidth: .infinity)
                     .padding()
                     .background(Color.customAccentColor)
@@ -67,33 +70,10 @@ struct LoginView: View {
                     .padding(.horizontal)
             }
             
-            //Login com google e Apple ID
-            HStack(spacing: 20) {
-                Button(action: {
-                   print("Login com Google")
-                }) {
-                    Image(systemName: "globe")
-                        .font(.title2)
-                        .padding()
-                        .background(Color.white)
-                        .cornerRadius(10)
-                }
-                Button(action: {
-                    print("Login com AppleID")
-                }) {
-                    Image(systemName: "applelogo")
-                        .font(.title2)
-                        .padding()
-                        .background(Color.white)
-                        .cornerRadius(10)
-                }
-            }
-            .padding(.bottom, 20)
-            
             HStack {
-                Text("Não tem uma conta?")
-                NavigationLink(destination: RegisterView()) {
-                    Text("Signup")
+                Text("Já tem uma conta?")
+                NavigationLink(destination: LoginView()) {
+                    Text("Sign in")
                         .foregroundStyle(Color.customAccentColor)
                 }
             }
@@ -102,12 +82,10 @@ struct LoginView: View {
             Spacer()
         }
         .background(Color.customBackgroundColor.ignoresSafeArea())
-            
-            
         }
     }
 }
 
 #Preview {
-    LoginView()
+    RegisterView()
 }
