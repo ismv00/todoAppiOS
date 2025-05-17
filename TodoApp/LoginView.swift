@@ -17,17 +17,21 @@ struct LoginView: View {
         VStack(spacing: 20) {
             Spacer()
             
+            
             Text("Bem vindo de volta!")
                 .font(.largeTitle).bold()
                 .foregroundStyle(.black)
             Text("Vamos te ajudar a concluir suas tarefas")
                 .font(.subheadline)
                 .foregroundStyle(.black.opacity(0.7))
+                .multilineTextAlignment(.center)
+                .padding(.horizontal, 40)
             
             Image("login")
                 .resizable()
                 .scaledToFit()
                 .frame(height: 200)
+                .padding(.bottom, 20)
             
             TextField("Digite seu e-mail", text: $email)
                 .padding()
@@ -35,7 +39,7 @@ struct LoginView: View {
                 .cornerRadius(10)
                 .padding(.horizontal)
             
-            TextField("Digite sua senha", text: $password)
+            SecureField("Digite sua senha", text: $password)
                 .padding()
                 .background(Color.white)
                 .cornerRadius(10)
@@ -59,6 +63,29 @@ struct LoginView: View {
                     .cornerRadius(10)
                     .padding(.horizontal)
             }
+            
+            //Login com google e Apple ID
+            HStack(spacing: 20) {
+                Button(action: {
+                   print("Login com Google")
+                }) {
+                    Image(systemName: "globe")
+                        .font(.title2)
+                        .padding()
+                        .background(Color.white)
+                        .cornerRadius(10)
+                }
+                Button(action: {
+                    print("Login com AppleID")
+                }) {
+                    Image(systemName: "applelogo")
+                        .font(.title2)
+                        .padding()
+                        .background(Color.white)
+                        .cornerRadius(10)
+                }
+            }
+            .padding(.bottom, 20)
             
             HStack {
                 Text("Não tem uma conta?")
