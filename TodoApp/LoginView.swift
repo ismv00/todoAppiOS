@@ -55,9 +55,7 @@ struct LoginView: View {
                                .foregroundColor(Color.customAccentColor)
                                .padding(.bottom, 10)
                        }
-            Button(action: {
-                print("Login")
-            }) {
+            NavigationLink(destination: TodoView()) {
                 Text("Login")
                     .frame(maxWidth: .infinity)
                     .padding()
