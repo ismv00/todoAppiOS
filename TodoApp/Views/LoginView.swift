@@ -68,23 +68,24 @@ struct LoginView: View {
             //Login com google e Apple ID
             HStack(spacing: 20) {
                 Button(action: {
-                   print("Login com Google")
+                    Task {
+                        do {
+                            try await GoogleAuthService.signInWithGoogle()
+                            print("Usuário autenticado com Google")
+                        } catch {
+                            print("Erro ao autenticar com Google: \(error.localizedDescription)")
+                        }
+                    }
                 }) {
-                    Image(systemName: "globe")
+                    Image("google-logo")
+                        .resizable()
+                        .frame(width: 150, height: 50)
                         .font(.title2)
                         .padding()
                         .background(Color.white)
                         .cornerRadius(10)
                 }
-                Button(action: {
-                    print("Login com AppleID")
-                }) {
-                    Image(systemName: "applelogo")
-                        .font(.title2)
-                        .padding()
-                        .background(Color.white)
-                        .cornerRadius(10)
-                }
+                
             }
             .padding(.bottom, 20)
             
