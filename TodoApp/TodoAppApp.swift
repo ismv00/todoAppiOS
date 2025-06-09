@@ -6,12 +6,20 @@
 //
 
 import SwiftUI
+import FirebaseCore
+import GoogleSignIn
+
 
 @main
-struct TodoAppApp: App {
+struct TodoApp: App {
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
+    
     var body: some Scene {
         WindowGroup {
-            HomeView()
+            NavigationView {
+                HomeView()
+            }
+            
         }
     }
 }
