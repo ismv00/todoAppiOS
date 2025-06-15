@@ -11,6 +11,7 @@
 		9535C4462DDA904C00FEF5EB /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = 9535C4452DDA904C00FEF5EB /* FirebaseCore */; };
 		9535C4492DDA90C900FEF5EB /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 9535C4482DDA90C900FEF5EB /* GoogleSignIn */; };
 		9535C44B2DDA90C900FEF5EB /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 9535C44A2DDA90C900FEF5EB /* GoogleSignInSwift */; };
+		95D64ED52DFF819800AE0430 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 95D64ED42DFF819800AE0430 /* FirebaseFirestore */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,7 @@
 				9535C4462DDA904C00FEF5EB /* FirebaseCore in Frameworks */,
 				9535C4442DDA904C00FEF5EB /* FirebaseAuth in Frameworks */,
 				9535C4492DDA90C900FEF5EB /* GoogleSignIn in Frameworks */,
+				95D64ED52DFF819800AE0430 /* FirebaseFirestore in Frameworks */,
 				9535C44B2DDA90C900FEF5EB /* GoogleSignInSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -93,6 +95,7 @@
 				9535C4452DDA904C00FEF5EB /* FirebaseCore */,
 				9535C4482DDA90C900FEF5EB /* GoogleSignIn */,
 				9535C44A2DDA90C900FEF5EB /* GoogleSignInSwift */,
+				95D64ED42DFF819800AE0430 /* FirebaseFirestore */,
 			);
 			productName = TodoApp;
 			productReference = 9501852B2DC8576100581938 /* TodoApp.app */;
@@ -398,6 +401,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 9535C4472DDA90C900FEF5EB /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
 			productName = GoogleSignInSwift;
+		};
+		95D64ED42DFF819800AE0430 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9535C4422DDA904C00FEF5EB /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

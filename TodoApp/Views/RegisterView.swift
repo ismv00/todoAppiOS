@@ -8,10 +8,7 @@
 import SwiftUI
 
 struct RegisterView: View {
-    @State private var fullName = ""
-    @State private var email = ""
-    @State private var password = ""
-    @State private var confirmPassword = ""
+    @StateObject private var viewModel = RegisterViewModel()
     
     
     var body: some View {
@@ -34,40 +31,53 @@ struct RegisterView: View {
                 .scaledToFit()
                 .frame(height: 200)
             
-            TextField("Digite seu nome completo", text: $fullName)
+            TextField("Digite seu nome completo", text: $viewModel.fullName)
                 .padding()
                 .background(Color.white)
                 .cornerRadius(10)
                 .padding(.horizontal)
             
-            TextField("Digite seu e-mail", text: $email)
+            TextField("Digite seu e-mail", text: $viewModel.email)
                 .padding()
                 .background(Color.white)
                 .cornerRadius(10)
                 .padding(.horizontal)
             
-            SecureField("Digite sua senha", text: $password)
+            SecureField("Digite sua senha", text: $viewModel.password)
                 .padding()
                 .background(Color.white)
                 .cornerRadius(10)
                 .padding(.horizontal)
             
-            SecureField("Confirme sua senha", text: $confirmPassword)
+            SecureField("Confirme sua senha", text: $viewModel.confirmPassword)
                 .padding()
                 .background(Color.white)
                 .cornerRadius(10)
                 .padding(.horizontal)
             
             Button(action: {
-                print("Register")
+                Task {
+                    await viewModel.registerUser()
+                }
             }) {
-                Text("Registrar")
-                    .frame(maxWidth: .infinity)
-                    .padding()
-                    .background(Color.customAccentColor)
-                    .foregroundStyle(.white)
-                    .cornerRadius(10)
-                    .padding(.horizontal)
+                if viewModel.isLoading {
+                    ProgressView()
+                        .frame(maxWidth: .infinity)
+                        .padding()
+                } else {
+                    Text("Registrar")
+                        .frame(maxWidth: .infinity)
+                        .padding()
+                }
+            }
+            .background(Color.customAccentColor)
+            .foregroundStyle(.white)
+            .cornerRadius(10)
+            .padding(.horizontal)
+            .disabled(viewModel.isLoading)
+            
+            NavigationLink(destination: LoginView(), isActive: $viewModel.registrationComplete) {
+                EmptyView()
             }
             
             HStack {
@@ -82,6 +92,13 @@ struct RegisterView: View {
             Spacer()
         }
         .background(Color.customBackgroundColor.ignoresSafeArea())
+        .alert(isPresented: $viewModel.showError) {
+            Alert(
+                title: Text("Erro no cadastro"),
+                message: Text(viewModel.errorMessage),
+                dismissButton: .default(Text("OK"))
+            )
+        }
         }
     }
 }
