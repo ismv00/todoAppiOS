@@ -42,7 +42,7 @@ struct TodoView: View {
                         .font(.title3).bold()
                         .foregroundStyle(.black)
                     
-                    NavigationLink(destination: TodoDetailsView()) {
+                    NavigationLink(destination: TodoDetailsView()) {    
                         VStack(alignment: .leading, spacing: 5) {
                             Text("• Learn programming by 12 am")
                             Text("• Learn how to cook by 1 pm")

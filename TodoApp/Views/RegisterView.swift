@@ -38,6 +38,8 @@ struct RegisterView: View {
                 .padding(.horizontal)
             
             TextField("Digite seu e-mail", text: $viewModel.email)
+                .autocapitalization(.none)
+                .disableAutocorrection(true)
                 .padding()
                 .background(Color.white)
                 .cornerRadius(10)
