@@ -4,8 +4,13 @@
 // Created by Igor S. Menezes on 05/05/25.
 
 import SwiftUI
+import FirebaseAuth
 
 struct TodoView: View {
+    
+    @Environment(\.dismiss) var dismiss
+    @State private var isLoggedOut = false
+    
     var body: some View {
         NavigationStack {
             VStack(spacing: 20) {
@@ -62,6 +67,26 @@ struct TodoView: View {
                 Spacer()
             }
             .background(Color.customBackgroundColor.ignoresSafeArea())
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button("Sair") {
+                        logout()
+                    }
+                    .foregroundStyle(.red)
+                }
+            }
+            .navigationDestination(isPresented: $isLoggedOut) {
+                LoginView()
+            }
+        }
+    }
+    
+    private func logout() {
+        do {
+            try Auth.auth().signOut()
+            isLoggedOut = true
+        } catch {
+            print("Erro ao deslogar: \(error.localizedDescription)")
         }
     }
 }
